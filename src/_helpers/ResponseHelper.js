@@ -14,6 +14,7 @@ export const responseMessage = () => {
         registrationSuccess: "Registration successfully !!!",
         errorPassword: "Wrong password, please try again !!!",
         loginSuccess: "Login Succesfully !!!",
+        requiredToken: "Token required !!!",
         invalidToken: "Token invalid !!!",
         validToken: "Token is valid !!!"
     }

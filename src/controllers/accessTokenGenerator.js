@@ -14,7 +14,7 @@ export const AccessTokenGenerator = async (req, res) => {
 
     const authHeader = req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];
-    if (token === undefined) return responseHelper(res, responseStatus().errorRequest, responseMessage().errorAccess, {});
+    if (token === undefined) return responseHelper(res, responseStatus().errorRequest, responseMessage().requiredToken, {});
 
     const currentTokenData = jwt.verify(token, process.env.REFRESH_TOKEN_SECRET);
 
