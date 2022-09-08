@@ -10,7 +10,7 @@ import {
 dotenv.config();
 
 export const AccessTokenGenerator = async (req, res) => {
-    const { browser, version, os, platform, isMobile } = req.useragent;
+    const { browser, version, os, platform, isMobile } = req.headers;
 
     const authHeader = req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];
