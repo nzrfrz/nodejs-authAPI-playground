@@ -4,7 +4,7 @@ import { AccessTokenGenerator } from "../controllers/accessTokenGenerator.js";
 const router = express.Router();
 
 export const GenerateAccessToken = (app) => {
-    const generateAccessToken = router.post("/accessToken", AccessTokenGenerator);
+    const generateAccessToken = router.post("/generate/accessToken", AccessTokenGenerator);
 
-    app.use("/generate", generateAccessToken);
+    app.use("/auth", generateAccessToken);
 };

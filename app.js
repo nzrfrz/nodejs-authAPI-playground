@@ -32,8 +32,8 @@ DB.mongoose
         console.log("Can't connect to database", error);
     });
 
-app.get("/", (req, res) => {
-    res.send("!!! NODEJS AUTH API PLAYGROUND !!!");
+app.get("/auth", (req, res) => {
+    res.send({message: "!!! NODEJS AUTH API PLAYGROUND !!!"});
 });
 
 UserRegistration(app);

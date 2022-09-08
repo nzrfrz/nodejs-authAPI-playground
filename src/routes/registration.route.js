@@ -4,7 +4,7 @@ import { Registration } from "../controllers/registration.controller.js";
 const router = express.Router();
 
 export const UserRegistration = (app) => {
-    const userRegistration = router.post("/registration", Registration);
+    const userRegistration = router.post("/user/registration", Registration);
 
-    app.use("/user", userRegistration);
+    app.use("/auth", userRegistration);
 };

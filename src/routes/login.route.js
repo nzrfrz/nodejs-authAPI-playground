@@ -4,7 +4,7 @@ import { Login } from "../controllers/login.controller.js";
 const router = express.Router();
 
 export const UserLogin = (app) => {
-    const userLogin = router.post("/login", Login);
+    const userLogin = router.post("/user/login", Login);
 
-    app.use("/user", userLogin);
+    app.use("/auth", userLogin);
 };
