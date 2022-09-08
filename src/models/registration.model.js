@@ -8,7 +8,6 @@ export const UserCredentialsInit = (mongoose) => {
             version: String,
             os: String,
             platform: String,
-            isMobile: Boolean,
             userRole: String,
             refreshToken: String,
             accessToken: String
