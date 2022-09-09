@@ -41,19 +41,19 @@ export const Login = async (req, res) => {
         id: checkExistingUsername[0]?.id || checkExistingEmail[0]?.id,
         userName: checkExistingUsername[0]?.userName || checkExistingEmail[0]?.userName,
         email: checkExistingUsername[0]?.email || checkExistingEmail[0]?.email,
-        browser: req.headers.browser,
-        version: req.headers.version,
-        os: req.headers.os,
-        platform: req.headers.platform,
+        // browser: req.headers.browser,
+        // version: req.headers.version,
+        // os: req.headers.os,
+        // platform: req.headers.platform,
     };
 
     const refreshToken = jwt.sign(dataToSign, process.env.REFRESH_TOKEN_SECRET);
 
     const payload = {
-        browser: dataToSign.browser,
-        version: dataToSign.version,
-        os: dataToSign.os,
-        platform: dataToSign.platform,
+        browser: req.headers.browser,
+        version: req.headers.version,
+        os: req.headers.os,
+        platform: req.headers.platform,
         userRole: "",
         refreshToken: refreshToken
     };

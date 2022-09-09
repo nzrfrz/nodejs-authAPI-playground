@@ -13,6 +13,8 @@ export const responseMessage = () => {
         errorEmailExist: "Email already associated with this account",
         registrationSuccess: "Registration successfully !!!",
         errorPassword: "Wrong password, please try again !!!",
+        errorVerifyToken: "Something wrong when verifying token, please try again later !!!",
+        errorGeneratingToken: "Something wrong when generating token, please try again later !!!",
         loginSuccess: "Login Succesfully !!!",
         requiredToken: "Token required !!!",
         invalidToken: "Token invalid !!!",
