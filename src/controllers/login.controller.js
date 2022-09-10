@@ -41,11 +41,13 @@ export const Login = async (req, res) => {
         id: checkExistingUsername[0]?.id || checkExistingEmail[0]?.id,
         userName: checkExistingUsername[0]?.userName || checkExistingEmail[0]?.userName,
         email: checkExistingUsername[0]?.email || checkExistingEmail[0]?.email,
+        refreshToken: checkExistingUsername[0]?.refreshToken || checkExistingEmail[0]?.refreshToken
         // browser: req.headers.browser,
         // version: req.headers.version,
         // os: req.headers.os,
         // platform: req.headers.platform,
     };
+    console.log(dataToSign);
 
     const refreshToken = jwt.sign(dataToSign, process.env.REFRESH_TOKEN_SECRET);
 
@@ -58,43 +60,43 @@ export const Login = async (req, res) => {
         refreshToken: refreshToken
     };
 
-    if (isUsernameExist) {
-        try {
-            if (await bcrypt.compare(password, checkExistingUsername[0].password)) {
-                USER_CREDENTIALS.findOneAndUpdate({ _id: checkExistingUsername[0].id }, payload, {new: true}, (error, results) => {
-                    if (results) {
-                        responseHelper(res, responseStatus().success, responseMessage().loginSuccess, returnData(results));
-                    } else {
-                        responseHelper(res, responseStatus().errorServer, responseMessage().errorServer, error);
-                    }
-                });
-            } else {
-                responseHelper(res, responseStatus().errorRequest, responseMessage().errorPassword, {});
-            }
-        } catch (error) {
-            responseHelper(res, responseStatus().errorRequest, responseMessage().errorServer, error);
-        }
-    } 
-    else if (isUserEmailExist) {
-        try {
-            if (await bcrypt.compare(password, checkExistingEmail[0].password)) {
-                USER_CREDENTIALS.findOneAndUpdate({ _id: checkExistingEmail[0].id }, payload, {new: true}, (error, results) => {
-                    if (results) {
-                        responseHelper(res, responseStatus().success, responseMessage().loginSuccess, returnData(results));
-                    } else {
-                        responseHelper(res, responseStatus().errorServer, responseMessage().errorServer, error);
-                    }
-                });
-            } else {
-                responseHelper(res, responseStatus().errorRequest, responseMessage().errorPassword, {});
-            }
-        } catch (error) {
-            responseHelper(res, responseStatus().errorRequest, responseMessage().errorServer, error);
-        }
-    }
-    else {
-        responseHelper(res, responseStatus().errorRequest, "EMAIL OR USERNAME NOT FOUND", {});
-    }
+    // if (isUsernameExist) {
+    //     try {
+    //         if (await bcrypt.compare(password, checkExistingUsername[0].password)) {
+    //             USER_CREDENTIALS.findOneAndUpdate({ _id: checkExistingUsername[0].id }, payload, {new: true}, (error, results) => {
+    //                 if (results) {
+    //                     responseHelper(res, responseStatus().success, responseMessage().loginSuccess, returnData(results));
+    //                 } else {
+    //                     responseHelper(res, responseStatus().errorServer, responseMessage().errorServer, error);
+    //                 }
+    //             });
+    //         } else {
+    //             responseHelper(res, responseStatus().errorRequest, responseMessage().errorPassword, {});
+    //         }
+    //     } catch (error) {
+    //         responseHelper(res, responseStatus().errorRequest, responseMessage().errorServer, error);
+    //     }
+    // } 
+    // else if (isUserEmailExist) {
+    //     try {
+    //         if (await bcrypt.compare(password, checkExistingEmail[0].password)) {
+    //             USER_CREDENTIALS.findOneAndUpdate({ _id: checkExistingEmail[0].id }, payload, {new: true}, (error, results) => {
+    //                 if (results) {
+    //                     responseHelper(res, responseStatus().success, responseMessage().loginSuccess, returnData(results));
+    //                 } else {
+    //                     responseHelper(res, responseStatus().errorServer, responseMessage().errorServer, error);
+    //                 }
+    //             });
+    //         } else {
+    //             responseHelper(res, responseStatus().errorRequest, responseMessage().errorPassword, {});
+    //         }
+    //     } catch (error) {
+    //         responseHelper(res, responseStatus().errorRequest, responseMessage().errorServer, error);
+    //     }
+    // }
+    // else {
+    //     responseHelper(res, responseStatus().errorRequest, "EMAIL OR USERNAME NOT FOUND", {});
+    // }
 
-    // responseHelper(res, responseStatus().success, "CHECK LOGS", {});
+    responseHelper(res, responseStatus().success, "CHECK LOGS", {});
 };
