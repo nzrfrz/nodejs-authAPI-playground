@@ -41,7 +41,6 @@ export const Login = async (req, res) => {
         id: checkExistingUsername[0]?.id || checkExistingEmail[0]?.id,
         userName: checkExistingUsername[0]?.userName || checkExistingEmail[0]?.userName,
         email: checkExistingUsername[0]?.email || checkExistingEmail[0]?.email,
-        refreshToken: checkExistingUsername[0]?.refreshToken || checkExistingEmail[0]?.refreshToken
         // browser: req.headers.browser,
         // version: req.headers.version,
         // os: req.headers.os,
